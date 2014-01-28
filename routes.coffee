@@ -16,5 +16,6 @@ module.exports = (app) ->
 			while i < Number(req.params.playerCount)
 				vars.rolls.push {name: ''}
 				vars.players.push {number:'', provider:''}
-		res.render 'phoneNumbers', vars
+				i++
+		res.render 'phoneNumbers', {vars:vars}
 	)
