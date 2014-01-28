@@ -1,0 +1,19 @@
+{
+	"name": "textwolf",
+	"version": "0.0.1",
+	"dexcription": "Texts people werewolf rolls",
+	"main": "app.coffee",
+	"dependencies": {
+		"express": "*",
+		"jade": "*",
+		"stylus": "*",
+		"async": "*"
+	},
+	"devDependencies": {
+		"coffee-script": "1.4.0",
+		"nodemon": "*"
+	},
+	"scripts":{
+		"start": "nodemon"
+	}
+}
