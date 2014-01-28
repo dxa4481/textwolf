@@ -1,11 +1,20 @@
 extends layout
 
 block content
-	table(border='1')
-		tr
-			th Rolls (will be randomized)
-			th Phone Numbers
-		tr
-			td bla
-		tr
-			td bla2
+	form(method='post')
+		table(border='1')
+			tr
+				th Rolls (will be randomized)
+				th Phone Numbers
+			tr
+				td
+					ul
+						each player in vars.players
+							li
+								input(type='text', name='number', value='#{player.number}')
+								input(type='text', name='provider', value='#{player.provider}')
+				td
+					ul
+						each roll in vars.rolls
+							li
+								input(type='text', name='roll', value='#{roll.name}')
