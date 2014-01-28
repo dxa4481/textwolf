@@ -1,3 +1,5 @@
+providers = ["verizon","at&t"]
+
 module.exports = (app) ->
 	app.get('/', (req, res) ->
 		res.render 'playercount'
@@ -15,7 +17,12 @@ module.exports = (app) ->
 			vars.players = []
 			while i < Number(req.params.playerCount)
 				vars.rolls.push {name: ''}
-				vars.players.push {number:'', provider:''}
+				playersProviders = {}
+				for provider in providers
+					playersProviders[provider] = false
+				vars.players.push {number:'', providers: playersProviders}
 				i++
-		res.render 'phoneNumbers', {vars:vars}
+				console.log playersProviders
+			req.session.vars = vars
+		res.render 'phoneNumbers', {vars:req.session.vars}
 	)

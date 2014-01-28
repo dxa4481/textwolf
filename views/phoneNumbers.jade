@@ -12,9 +12,17 @@ block content
 						each player in vars.players
 							li
 								input(type='text', name='number', value='#{player.number}')
-								input(type='text', name='provider', value='#{player.provider}')
+								select
+									each val, key in player.providers
+										if val
+											option(name='#{key}', value='#{key}', select="selected")
+												| #{key}
+										else
+											option(name='#{key}', value='#{key}')
+												| #{key}
 				td
 					ul
 						each roll in vars.rolls
 							li
 								input(type='text', name='roll', value='#{roll.name}')
+		input(type="submit", value="Text them!")
