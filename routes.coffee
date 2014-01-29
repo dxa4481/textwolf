@@ -1,4 +1,17 @@
-providers = ["verizon","at&t"]
+voice = require "voice.js"
+
+
+client = new voice.Client({
+	email: "werewolftext@gmail.com",
+	password: "werewolftexter"
+})
+
+sendText = (number, text, cb) ->
+	client.sms({to: number, text: text}, (err, res, data) ->
+		return cb(err) if err
+		cb(null)
+	)
+
 
 module.exports = (app) ->
 	app.get('/', (req, res) ->
@@ -17,12 +30,21 @@ module.exports = (app) ->
 			vars.players = []
 			while i < Number(req.params.playerCount)
 				vars.rolls.push {name: ''}
-				playersProviders = {}
-				for provider in providers
-					playersProviders[provider] = false
-				vars.players.push {number:'', providers: playersProviders}
+				vars.players.push {number:''}
 				i++
-				console.log playersProviders
 			req.session.vars = vars
 		res.render 'phoneNumbers', {vars:req.session.vars}
 	)
+	app.post('/count/:playerCount', (req, res) ->
+		return res.send 400 if req.body.number?.length isnt req.body.roll?.length
+		rolls = req.body.roll
+		for number in req.body.number
+			randomNum = getRandomInt(0, rolls)
+			text = rolls[randomNum]
+			rolls.remove(randomNum)
+			#sendText(number, text, (err) -> console.log err)
+		res.send "Doesn't work yet. I can't test until I get a phone"
+	)
+Array::remove = (e) -> @[t..t] = [] if (t = @indexOf(e)) > -1
+getRandomInt = (min, max) ->
+	Math.floor Math.random() * (max - min + 1) + min
