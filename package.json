@@ -8,7 +8,7 @@
 		"jade": "*",
 		"stylus": "*",
 		"async": "*",
-		"voice.js": "*"
+		"voice.js": "git://github.com/amper5and/voice.js.git#master"
 	},
 	"devDependencies": {
 		"coffee-script": "1.4.0",
