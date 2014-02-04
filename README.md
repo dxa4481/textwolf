@@ -1,7 +1,7 @@
 textwolf
 ========
 
-This is an open source texting utility designed for werewolf.
+This is an open source texting utility designed for werewolf. The SMS function is currently commented out for bug fixing.
 
 ## Installation
 
